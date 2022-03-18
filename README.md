@@ -48,3 +48,29 @@ optional arguments:
                         Output filepath for the new JSON file. (default:
                         ./handlers.json)
 ```
+
+# Addendum
+
+Little reversing about some attributes in the handlers.json structure
+(yes we are talking about reversing to patch a Firefox UI decision :thumbsup:):
+
+```
+"action":0      save the file (new default option...), usually goes with the parameter ask = false
+"action":1      always ask
+"action":2      ask to open with an application
+"action":3      open in firefox
+"action":4      use another application by default (thunderbird, etc)
+
+
+save the file:
+"application/json":{"action":0,"handlers":[{"name":"kwrite","path":"/usr/bin/kwrite"}],"extensions":["json"]}
+
+always ask:
+"application/json":{"action":1,"handlers":[{"name":"kwrite","path":"/usr/bin/kwrite"}],"extensions":["json"],"ask":true}
+
+use kwrite:
+"application/json":{"action":2,"handlers":[{"name":"kwrite","path":"/usr/bin/kwrite"}],"extensions":["json"]}
+
+use kwrite by default:
+"application/json":{"action":4,"handlers":[{"name":"kwrite","path":"/usr/bin/kwrite"}],"extensions":["json"]}
+```
