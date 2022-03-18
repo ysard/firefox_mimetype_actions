@@ -48,6 +48,8 @@ def edit_handlers(input_file, output):
     # Export the new file content
     output.write_text(json.dumps(json_data, sort_keys=True))
 
+    print("Done")
+
 
 def args_to_params(args):
     """Return argparse namespace as a dict {variable name: value}"""
