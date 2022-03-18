@@ -31,7 +31,7 @@ def edit_handlers(input_file, output):
     """Open handlers.json and edit a new version with the default behavior
     for downloaded files changed
     """
-    content = Path(input_file).read_text()
+    content = input_file.read_text()
     json_data = json.loads(content)
 
     # We are interested only in mimetypes
@@ -46,7 +46,7 @@ def edit_handlers(input_file, output):
     json_data["mimeTypes"] = mimetypes
 
     # Export the new file content
-    Path(output).write_text(json.dumps(json_data, sort_keys=True))
+    output.write_text(json.dumps(json_data, sort_keys=True))
 
 
 def args_to_params(args):
@@ -61,9 +61,9 @@ def test_args(args):
     - Try to backup the input file
     - If the backup file already exists, ask what to do
     """
-    if not Path(args.input_file).exists():
+    if not args.input_file.exists():
         print("Given file doesn't exist:", args.input_file)
-    elif Path(args.input_file + ".bak").exists():
+    elif Path(str(args.input_file) + ".bak").exists():
         # Backup already exists => ask if we should continue
         print(
             "The backup file '{}.bak' will be overwritten by the current '{}' file.".format(
@@ -77,7 +77,7 @@ def test_args(args):
         if ret in ("N", "n"):
             exit()
     # Make backup
-    shutil.copy(args.input_file, args.input_file + ".bak")
+    shutil.copy(args.input_file, str(args.input_file) + ".bak")
 
 
 def main():
@@ -93,6 +93,7 @@ def main():
         "(on GNU/Linux: ~/.mozilla/firefox/<my_profile/). "
         "By default it will be renamed by adding a .bak suffix.",
         default="./handlers.json",
+        type=Path,
     )
 
     parser.add_argument(
@@ -100,6 +101,7 @@ def main():
         "--output",
         help="Output filepath for the new JSON file.",
         default="./handlers.json",
+        type=Path,
     )
 
     # Get program args and launch associated command
