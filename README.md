@@ -34,7 +34,7 @@ https://www.reddit.com/r/firefox/comments/tdohiy/firefox_98_download_manager_sup
 # Usage
 
 ```bash
-usage: handlers.py [-h] [-o OUTPUT] [input_file]
+usage: edit_handlers.py [-h] [-o OUTPUT] [input_file]
 
 positional arguments:
   input_file            handlers.json file path in the Firefox profile (on
