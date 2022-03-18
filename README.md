@@ -2,6 +2,8 @@ A program to revert default settings on mimetype handlers changed by Mozilla
 on Firefox 98 unilaterally and without consultation of the community
 (as it is too often the case).
 
+![](https://preview.redd.it/hbirna9158n81.png?width=1220&format=png&auto=webp&s=b17e21506464f27b6e5a9bd9b1fd1dd274cb01e4)
+
 
 # Background
 
